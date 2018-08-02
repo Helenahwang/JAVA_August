@@ -205,14 +205,10 @@ public class ContactDaoImpl implements ContactDao {
 			
 		}
 		
-		
-		
-		
+
 		return result;
 		
-		
-		
-		
+				
 	}
 
 	@Override

@@ -41,19 +41,11 @@ public class Contact {
 	public void setBirthdate(Date birthdate) {
 		this.birthdate = birthdate;
 	}
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "Contact [num=" + num + ", name=" + name + ", phone=" + phone + ", email=" + email + ", birthdate="
 				+ birthdate + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }
