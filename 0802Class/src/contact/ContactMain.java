@@ -2,6 +2,7 @@ package contact;
 
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 
 public class ContactMain {
 
@@ -33,6 +34,22 @@ public class ContactMain {
 		
 		//데이터를 삭제하는 메소드 호출
 		boolean result = dao.deleteContact(6);
+		
+		
+		// 모든 데이터 확인하는 메소드 호출
+		//List<Contact> ls=dao.allContact(contact);
+		//System.out.print(ls);
+		//for(Contact ct : ls) {
+		//	System.out.println(ct);
+		//}
+		
+		
+		List<Contact> lss=dao.selectnameContact("문");
+		//System.out.print(lss);
+		for(Contact ct : lss) {
+			System.out.println(ct);
+		}
+		
 		
 		if(result == true) {
 			System.out.println("성공");

@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ContactDaoImpl implements ContactDao {
@@ -46,10 +46,7 @@ public class ContactDaoImpl implements ContactDao {
 	}
 	
 	
-	
-	
-	
-	
+	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 	
 	//가장 큰 num을 찾아오는 메소드
 	//sql : select max(num) from contact;
@@ -86,9 +83,6 @@ public class ContactDaoImpl implements ContactDao {
 		
 		return result;
 	}
-	
-	
-	
 	
 
 	@Override
@@ -213,20 +207,104 @@ public class ContactDaoImpl implements ContactDao {
 
 	@Override
 	public List<Contact> allContact(Contact contact3) {
-		// TODO Auto-generated method stub
-		return null;
+		//읽어온 데이터를 저장하기 위한 리스트 생성
+		List<Contact> list = new ArrayList<Contact>();
+		
+		connect();
+		
+		try {
+			//contact 테이블에 있는 전체 데이터를 가져오는 SQL 실행 객체를 생성한다.
+			pstmt = con.prepareStatement("select * from contact");
+			rs=pstmt.executeQuery();
+			
+			while(rs.next()) {
+			
+//			System.out.print(rs.getInt(1)+"\t");
+//			System.out.print(rs.getString(2)+"\t");
+//			System.out.print(rs.getString(3)+"\t");
+//			System.out.print(rs.getString(4)+"\t");
+//			System.out.print(rs.getDate(5));
+				
+				
+			Contact contact = new Contact();
+			contact.setNum(rs.getInt(1));
+			contact.setName(rs.getString(2));
+			contact.setPhone(rs.getString(3));
+			contact.setEmail(rs.getString(4));
+			contact.setBirthdate(rs.getDate(5));
+			
+			list.add(contact);
+			
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+		}
+
+		
+		close();
+		
+		return list;
 	}
 
 	@Override
 	public List<Contact> selectnameContact(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		List<Contact> ls=new ArrayList<>();
+		
+		connect();
+		
+		try {
+			pstmt = con.prepareStatement("select num, name, phone, email, birthday from contact where name like ?");
+			pstmt.setString(1, "%"+name+"%");
+			
+			rs= pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				Contact contact=new Contact();
+				
+				contact.setNum(rs.getInt(1));
+				contact.setName(rs.getString(2));
+				contact.setPhone(rs.getString(3));
+				contact.setEmail(rs.getString(4));
+				contact.setBirthdate(rs.getDate(5));
+				
+				ls.add(contact);
+				
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		close();
+		
+		return ls;
 	}
 
 	@Override
 	public Contact selectnumContact(int num) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Contact ct = new Contact();
+		
+		connect();
+		
+		try {
+			
+			pstmt = con.prepareStatement("select num, name, phone, email, birthday from contact where name like ? or ");
+			
+			
+		
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		close();
+		
+		return ct;
 	}
 
 }
