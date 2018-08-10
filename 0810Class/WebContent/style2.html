@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>리스트 스타</title>
+<style>
+
+/*목록모양만들기*/
+
+ol{
+list-style-type:hiragana;
+}
+
+ul{
+list-style-image:url(images/dog.gif) 
+}
+/*배경 색상 만들기*/
+/*h3{background-color :skyblue; border:5px groove #06c}*/
+h3{background-color :skyblue; border-width:5px; border-style:solid; 
+border-top-color:blue;
+border-left-color : blue;
+border-right-color:red;
+border-bottom-color:red;}
+
+h3:active{
+border-width : 5px;
+border-style:solid; 
+border-top-color:red;
+border-left-color : red;
+border-right-color:blue;
+border-bottom-color:blue;
+margin:2px
+
+}
+
+
+/*배경 이미지 만들기*/
+body{
+
+/*
+background:url(images/dog.gif) left top repeat-y,
+url(images/dog.gif) right top repeat-y,
+url(images/dog.gif) right top repeat-x
+*/
+
+
+/* http://www.colorzilla.com/gradient-editor/ */
+/*background: -moz-linear-gradient(top, rgba(30,87,153,1) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+/*background: -webkit-linear-gradient(top, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+/*background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#007db9e8',GradientType=0 ); /* IE6-9 */
+
+
+
+
+
+
+
+}
+
+
+#radius{
+width:100px;
+height:100px;
+background-color : skyblue;
+border-radius : 200px 200px 0px 0px;
+}
+
+
+div{
+float:left} /* 한줄에 div를 표시한다. */
+
+section{
+display:block; /*html5가 지원되지않을 때 이렇게 쓴다*/
+}
+
+</style>
+</head>
+<body>
+
+<div>AA</div>
+<div>BB</div>
+<br/>
+<br/>
+<a href="#"><h3>Full Stack</h3></a>
+
+<ol>
+<li id="radius"> Java </li>
+<li> Data Structure </li>
+<li> Algorithms</li>
+<li> Database</li>
+<li> Front End</li>
+<li> Java Web Programming</li>
+<li> Android</li>
+<li> ios</li>
+</ol>
+
+
+<h3>The most popular programming languages</h3>
+<ul>
+<li> JavaScript</li>
+<li> C &amp; C++</li>
+<li> Java</li>
+<li> C#</li>
+<li> Python</li>
+<li> R</li>
+<li> Swift</li>
+<li> kotlin</li>
+<li> SQL</li>
+<li> Scalar</li>
+</ul>
+
+
+</body>
+</html>

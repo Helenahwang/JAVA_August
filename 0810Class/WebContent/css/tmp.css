@@ -1,0 +1,20 @@
+h3{color:blue;}
+
+
+/*
+.article{color:green;}
+#atid{color:pink;}
+*/
+
+.article, #atid{color:green;}
+
+
+
+h3:hover{color:gray;}
+h3:active{color : yellow;}
+
+h4{
+	font-size:100px;
+	text-shadow : 10px 10px #ff1111, 20px 20px #eeff33, 30px 30px blue;
+}
+

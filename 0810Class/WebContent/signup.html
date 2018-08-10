@@ -19,7 +19,11 @@
 	<tr>
 	<td align="right">email&nbsp;</td>
 	<td> &nbsp;
-	<input type ="text" name="email" size="30" />
+	<input type ="text" name="email" id="email" size="30" />
+	
+	<!--<div id="emaildiv"></div>-->
+	<span id="emaildiv"></span>
+	
 	</td>
 	</tr>
 	
@@ -72,7 +76,27 @@
 	
 	
 	
+	
 	</table>
 
 </body>
+
+
+<script>
+document.getElementById("email").onblur = function(){document.getElementById("emaildiv").innerHTML="invalid email address";}
+</script>
+
+
+
+
 </html>
+
+
+
+
+
+
+
+
+
+
