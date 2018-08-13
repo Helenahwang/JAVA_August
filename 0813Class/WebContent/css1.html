@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+/* 다음 셋 중에 하나로 해서 쓰면 된다.
+p 
+.content{ 내용 }
+#pid{ 내용 }
+*/
+
+#pid{
+width:200px;
+background:#fdd;
+border : 2px solid #0000ff; /*blue*/
+outline: 2px solid #ffaa00;
+outline-offset:3px;
+resize:both;
+overflow:auto;
+}
+
+div{
+background-color : papayawhip;
+width : 300px;
+height : 100px;
+
+-webkit-transform:rotate(30deg);
+-moz-tansform:rotate(30deg);
+-ms-transform:rotate(30deg);
+
+
+}
+
+a{
+/*주위에 아무것도 배치되지 않도록 블록요소로 변경*/
+display:block;
+width:300px; /*숫자와 단위 붙여서*/
+height:30px;
+background:#ff0000;
+
+-webkit-transition:all 3.0s
+
+}
+
+a:hover{
+width: 450px;
+background-color:yellow;
+opacity:0.0;
+}
+
+</style>
+
+
+</head>
+<body>
+
+<h2>CSS - resize, outline</h2>
+<p class = "contect" id="pid">
+동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세
+무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세
+</p> 
+
+<div></div>
+
+<a href="#">animation menu</a>
+
+
+
+
+</body>
+</html>
