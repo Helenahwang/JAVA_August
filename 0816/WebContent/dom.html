@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+</head>
+<body>
+
+
+<form>
+
+<div id="msg"></div>
+
+
+<!-- id는 페이지 내에서 구분하기 위한 속성,name은 서버에게 전송할 때 구분하기 위한 속성 -->
+이메일 : <input type="text" id="email" name = "email"/>
+<br/>
+비밀번호 : <input type="password" id="pw" name="pw" />
+<br/> 
+비밀번호확인 : <input type="password" id="pw1" /> <!-- name은 필요없다 서버에게 전송하지 않기때문에 --> 
+<br/>
+이름 : <input type ="text" id="name" name="name" />
+<br/>
+<input type="submit" value="signup" />
+
+<!--  <input type="button" value ="main" onclick="location.href='index.html'"/> <!-- 	버튼 누르면 수행됨, 인라인 이벤트 처리라고 부름 -->
+
+<input type="button" value ="main으로" id="btn"/>
+
+</form>
+
+
+
+</body>
+
+<script>
+
+//전통적인 이벤트 처리 방식
+//document.getElementById("btn").onclick=function(){location.href="index.html"}
+
+
+
+//표준 이벤트 처리 방식
+document.getElementById("btn").addEventListener('click', function(ee){
+	//이벤트 객체 가져오기
+	var event = ee||window.event
+	//alert(event.target.id)
+	alert(event.target.value)
+})
+
+document.getElementById("btn").addEventListener('click', function(){
+	alert("표준 이벤트 처리")
+})
+
+
+document.getElementById("email").value="ggangpae" // value는 값을 넣거나 읽어올 때 사용
+
+//닫는 태그가 있는 태그들은 안에 내용을 삽입하거나 가져올 수 있다.
+//이때 사용하는 속성이 inner HTML 이다.
+document.getElementById("msg").innerHTML = "안녕하세요 dom 입니다."
+
+document.getElementById("msg").style.color = 'red'
+	
+</script>
+
+</html>

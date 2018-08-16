@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+
+<script>
+var ar=[null,"차범근", "반바스텐", "굴리트", "클라이베르트", "베르칸프", "로번"]
+
+var first = ar.slice(0,3)
+//alert(first)
+
+var second = ar.slice(3,6)
+//alert(second)
+
+
+
+var result = ar.map(function(element){
+	if(element == null)
+		element = "이름없음"
+
+	return element
+})
+
+//alert(result)
+
+
+//filter는 매개변수가 1개이고 Boolean를 리턴하는 함수를 매개변수로 받아서 
+//true를 리턴하는 내용만 가지고 새로운 배열을 만들어서 리턴한다.
+//4글자 이상인 데이터만 추출하기
+result = result.filter(function(element){
+	return element.length >=4 //글자 길이 4이상만
+})
+
+//alert(result)
+
+
+
+
+//map은 리턴되는 데이터를 가지고 배열을 새로 생성
+var result1 = result.map(function(element){
+	return element.length // 각 글자의 개수 출력
+})
+
+//alert(result1)
+
+
+
+
+
+
+result = result.filter(function(element){
+	return element.charAt(element.length-1)=='트'
+})
+
+//alert(result)
+
+
+var json = '["HTML", "CSS", "JavaScript"]'
+
+result = JSON.parse(json)
+for(idx in result){
+	document.writeln(result[idx]) //하나씩 출력
+}
+
+//객체 출력 
+json = '{"language" : "Java", "db" : "Oracle"}'
+
+
+	result = JSON.parse(json)
+	for(idx in result){
+		document.writeln(idx + ":" + result[idx]) //하나씩 출력
+	}
+
+
+window.open('http://www.google.co.kr','google','width=400, height=300, resizable=no')
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
