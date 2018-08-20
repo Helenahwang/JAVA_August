@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<video src="associate/IPhone3G.mov"
+controls="controls" id="video"></video>
+
+<input type="button" value="재생" id="play" />
+<input type="button" value="중지" id="pause"/>
+<span id="frame"></span>
+
+<!-- 배경음악처럼 무한 반복하는 음원재생 -->
+<audio src="associate/Dont Push me.mp3"controls="controls" autoplay="autoplay" loop="loop"></audio> 
+
+</body>
+
+
+<script>
+//video 라는 id를 가진 객체를 찾아와서 video에 대입
+var video=document.getElementById("video")
+
+var playBtn=document.getElementById("play")
+var pauseBtn=document.getElementById("pause")
+var frame =document.getElementById("frame")
+
+
+//play 버튼을 눌렀을 때 처리
+playBtn.addEventListener("click", function(e){
+	var event = e || window.event;
+	if(playBtn.value == "재생"){
+		video.play()
+		playBtn.value="중지"
+	}
+	else{
+		video.pause()
+		playBtn.value="재생"
+	}
+	
+});
+
+/*
+for(attr in video){
+	document.body.innerHTML +="<br/>"+attr
+}
+*/
+
+//pause 버튼을 눌렀을 때 처리
+pauseBtn.addEventListener("click", function(e){
+	video.pause();
+});
+
+
+//video 에 timeupdate 이벤트가 발생했을 때 frame에 전체 재생 시간과 현재 재생 시간을 출력
+//현재 재생 시간은 currentTime 속성이고 전체 재생 시간은 duration 속성을 가지고 있다.
+
+video.addEventListener("timeupdate", function(e){
+	var event= e||window.event;
+	frame.innerHTML=Math.round(video.currentTime)+"/"+Math.round(video.duration)
+})
+
+
+
+
+
+</script>
+</html>

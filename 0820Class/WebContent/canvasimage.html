@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<canvas id="canvas1" width="600" height="900"></canvas> <!-- 캔버스 사이즈를 조정해서 사진이 위에 나오도록... -->
+
+</body>
+
+<script>
+var canvas1=document.getElementById("canvas1")
+
+//컨텍스트 변수 만들기
+var context1=canvas1.getContext("2d")
+
+//출력할 이미지 객체 만들기
+var image1 = new Image()
+image1.src="http://newsimg.sedaily.com/2017/09/15/1OL1CMWR9X_1.jpg"
+//image1.src="associate/img.jpg"
+
+//이미지 파일을 전부 읽어서 메모리에 로드 한 후 수행
+image1.addEventListener("load", function(){
+	//alert("이미지 로드 성공")
+	//context1.drawImage(image1, 200,200, 200,200, 100,100, 100, 100)
+	context1.drawImage(image1, 0,0)
+	//(이미지객체, 자르는 x좌표, 자르는 y좌표, 자르는 너비, 자르는 높이, 출력할 x좌표, 출력할 y좌표, 출력할 너비, 출력할 높이 ) 
+	//context1.drawImage(image1, 133,135, 133,133, 10,10, 266, 266) // 사진크기 400/3=133 
+})
+
+
+/*
+image1.addEventListener("load", function(){
+	//setInterval(func, 2000)
+	setInterval(func1, 2000)
+})
+
+var idx=0
+var func=function(){
+	context1.drawImage(image1, 133*idx, 0, 133,133,10,10,266,266)
+	idx=idx+1
+	idx=idx%3
+}
+
+
+var idx=0
+var func1=function(){
+	context1.drawImage(image1, 133*Math.floor(idx/3), 133*Math.floor(idx%3), 133,133,10,10,266,266)
+	idx=idx+1
+	idx=idx%9 //9를 넘지 않게 하기 위해서 
+}
+*/
+
+
+</script>
+
+</html>
