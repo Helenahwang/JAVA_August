@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>web sql</title>
+</head>
+<body>
+
+	<fieldset> <!-- 테두리 --> 
+		<legend>데이터 입력 영역</legend> <!-- 첫번째 테두리 이름 -->
+		이름:<input type="text" size="20" id="name" /><br/>
+		
+		나이:<input type="text" size="20" id="age" /><br/>
+		
+		주소:<input type="text" size="40" id="address" /><br/>
+		
+		<input type="button" value="삽입" id="addbtn" />
+	</fieldset>
+	
+	<fieldset> <!-- 테두리 --> 
+		<legend>데이터 출력 영역</legend> <!-- 두번째 테두리 이름 -->
+		<select id="list" size="10"></select> <!-- 여러개를 보여주기 위해서 -->
+		<input type="button" value="삭제" id="deletebtn" />
+	</fieldset>
+
+
+</body>
+
+<script>
+//자바스크립트에서 사용할 태그 찾아오기
+	var name1=document.getElementById("name")
+	var age=document.getElementById("age")
+	var address=document.getElementById("address")
+	var addbtn=document.getElementById("addbtn")
+	var list=document.getElementById("list")
+	var deletebtn=document.getElementById("deletebtn")
+
+//데이터베이스 변수 생성
+	var db //함수밖의 변수, 두개 이상의 함수에서 쓸수 있도록
+
+//데이터베이스를 초기화해주는 메소드
+	function init(){
+	//데이터베이스 생성하기 위한 메소
+	//openDatabase(데이터베이스 이름, 버전, 사용자에게 보여질 데이터베이스이름, 데이터베이스의 크기 // 데이터를 열자
+		db=window.openDatabase("addressbook","1","addressbookDB", "1024*1024")
+	
+	//SQL을 실행하기 위한 트랜잭션 생성
+		db.transaction(function(tx){
+		//테이블생성, 테이블이름: addresbook // 컬럼이름, 자료형, 제약조건 // 자료형 안쓰면 기본적으로 text형태 // 총 4개의 컬럼 
+		tx.executeSql("create table if not exists addressbook(num integer primary key autoincrement, " +
+				"name, age integer, address)")
+	})
+	//데이터를 읽어오는 함수를 호출
+		showData()
+	
+}
+	
+	//데이터를 읽어오는 함수
+	function showData(){
+		db.transaction(function(tx){
+			tx.executeSql("select * from addressbook",[], function(tx,rs){ 
+				// 대괄호: ? 로 해놓고 set해서 가져오는 것을 사용할 때 쓰임, 여기에서는 현재 쓰여지지 않음  
+				//function 콜백함수여 rs : 실행결과가 들어있다. rows : 검색 결과를 다 가지고 있다. 배열  
+				
+				//list를 초기화 -  태그안의 내용 삭제
+				list.innerHTML=""
+				
+				//select 구문의 결과 가져오기
+				var rows=rs.rows;
+				
+				//반복문을 돌려서 읽은 데이터를 list에 출력
+				for(var i=0; i<rows.length; i=i+1){
+					//하나의 행 가져오기
+					var row= rows.item(i)
+					
+					//select 안에 삽입할 Option 만들기 //select 형태는 option을 사용하기 때문에\\ 만들어져 보여지는 글자, 저장되는 내용
+					var option=new Option(row.num+"\t"+row.name+"\t"+row.age+"\t"+row.address, row.num)
+					
+					//select에 추가 // 리스트의 마지막 번지에 넣는다. 
+					list.options[list.options.length]=option
+					
+					
+				}
+			})
+		})
+	}
+	
+	//페이지의 내용을 읽어서 메모리에 로드하자마자 
+	window.addEventListener("load",function(e){
+		//초기화 메소드 호출
+		init()
+	})
+	
+	//삽입버튼을 눌렀을 때 수행할 내용
+	addbtn.addEventListener("click", function(e){
+		//입력된 값 가져오기
+		var namevalue=name1.value;
+		var agevalue=age.value;
+		var addressvalue=address.value;
+
+		//삽입하는 sql 실행하기
+		db.transaction(function(tx){
+			tx.executeSql("insert into addressbook(name, age, address) values(?,?,?)",
+			[namevalue, agevalue, addressvalue], function(tx,rs){
+				
+				alert("삽입 성공");
+				//데이터 다시 출력
+				showData();
+			})
+
+			
+		})
+	});
+
+	//삭제 버튼을 눌렀을 때 처리
+	deletebtn.addEventListener("click", function(e){
+		//리스트에서 선택한 형 번호 가져오기
+		//selectedIndex
+		var idx = list.selectedIndex;
+		if(idx<0){
+			alert("선택하고 삭제를 누르세요")
+		}
+		
+		//선택한 항목의 value(num 값) 가져오기
+		var num = list.options[idx].value;
+		
+		//데이터베이스에서 삭제하기
+		db.transaction(function(tx){
+		tx.executeSql("delete from addressbook where num=?", [num], function(tx,rs){
+				
+		alert("삭제성공");
+		//데이터 다시 출력
+		showData()
+		})
+
+			
+		})
+		
+	})
+	
+</script>
+
+
+
+</html>
+
+
+
+
